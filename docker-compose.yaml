@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mysql-docker-container:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=Kruthi!345
+      - MYSQL_DATABASE=airline
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Kruthi!345
+    volumes:
+      - /Users/chandrakumbham
+  spring-boot-jpa-app:
+    image: micro-service
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-docker-container
+    ports:
+      - 8080:8080
+    volumes:
+      - /Users/chandrakumbham
